@@ -1,0 +1,108 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "br.com.testpetz"
+        minSdk 21
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", "\"https://omgvamp-hearthstone-v1.p.rapidapi.com/\""
+        }
+        debug {
+            buildConfigField "String", "BASE_URL", "\"https://omgvamp-hearthstone-v1.p.rapidapi.com/\""
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.3.0'
+        kotlinCompilerVersion '3.2.0'
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        compose true
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+        unitTests.includeAndroidResources = true
+        unitTests.all {
+            maxHeapSize = "6144m"
+            jvmArgs = ["-Xmx3g", "-noverify"]
+        }
+        animationsDisabled = true
+        execution 'ANDROIDX_TEST_ORCHESTRATOR'
+    }
+}
+
+dependencies {
+    implementation project(path: ':network')
+
+    implementation "androidx.test.ext:junit-ktx:$junit_ktx_version"
+    implementation "androidx.core:core-ktx:$core_ktx_version"
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "com.google.android.material:material:$material_version"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
+
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-compose:$nav_version"
+
+    implementation "androidx.compose.ui:ui:$compose_version"
+    implementation "androidx.compose.ui:ui-tooling:$compose_version"
+    implementation "androidx.compose.material:material:$compose_version"
+    implementation "androidx.compose.foundation:foundation:$compose_version"
+    implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
+
+    implementation "io.insert-koin:koin-android:$koin_version"
+    implementation "io.insert-koin:koin-androidx-compose:$koin_version"
+
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+
+    implementation "com.squareup.moshi:moshi:$moshi_version"
+
+    implementation "com.google.accompanist:accompanist-pager:$accompanist_version"
+
+    implementation "androidx.compose.compiler:compiler:$compose_compiler_version"
+
+    implementation "io.coil-kt:coil-compose:$coil_compose_version"
+
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+
+    implementation "androidx.arch.core:core-testing:$core_testing_version"
+    testImplementation "junit:junit:$junit_version"
+    testImplementation "io.insert-koin:koin-test-junit4:$koin_version"
+    androidTestImplementation  "androidx.test.ext:junit:$ext_junit"
+    androidTestImplementation  "androidx.test.espresso:espresso-core:$espresso_core_version"
+    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
+    testImplementation "io.insert-koin:koin-test:$koin_version"
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$ui_test_junit4_version"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test-jvm:$coroutines_test_jvm_version"
+    testImplementation "org.mockito:mockito-core:$mockito_core_version"
+    testImplementation "org.mockito.kotlin:mockito-kotlin:$mockito_kotlin_version"
+    testImplementation "androidx.arch.core:core-common:$core_common_version"
+}
