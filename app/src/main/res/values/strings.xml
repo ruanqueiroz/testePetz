@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Cards</string>
+    <string name="list_image_content_description">Imagem do item</string>
+
+    <string name="detail_label_type">Tipo:</string>
+    <string name="detail_label_rarity">Raridade:</string>
+    <string name="detail_label_attack">Ataque:</string>
+    <string name="detail_label_cost">Custo:</string>
+    <string name="detail_label_health">Health:</string>
+    <string name="detail_label_faction">Facção:</string>
+    <string name="detail_label_set">Set pertencente:</string>
+</resources>
